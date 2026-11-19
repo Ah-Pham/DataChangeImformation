@@ -33,7 +33,7 @@ const els = {
   toast: document.getElementById("toast")
 };
 
-let accessToken = sessionStorage.getItem("accessToken");
+let accessToken = localStorage.getItem("accessToken");
 let records = [];
 let toastTimer;
 
@@ -125,7 +125,7 @@ els.loginForm.addEventListener("submit", async (event) => {
     }
 
     accessToken = result.token;
-    sessionStorage.setItem("accessToken", accessToken);
+    localStorage.setItem("accessToken", accessToken);
     showDashboard();
     setConnection(true);
     await loadRecords();
@@ -295,7 +295,7 @@ els.refreshButton.addEventListener("click", loadRecords);
 function logout(showMessage = true) {
   accessToken = null;
   records = [];
-  sessionStorage.removeItem("accessToken");
+  localStorage.removeItem("accessToken");
   resetEditor();
   renderRecords();
   showLogin();
